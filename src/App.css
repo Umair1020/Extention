@@ -1,38 +1,286 @@
-.App {
+* {
+  box-sizing: border-box !important;
+}
+
+html {
+  width: 100%;
+}
+
+body {
+  /* background-image: url(./images/bglog.png); */
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+}
+
+.logui {
+  width: 400px;
+  padding: 30px;
+  border-radius: 12px;
+  background: #FFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.timg {
+  width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.timg img {
+  width: 200px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.google-btn {
+  border-radius: 12px;
+  border: 2px solid var(--neutral-03100, #E8ECEF);
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  background-color: transparent;
+}
+
+.email-btn {
+  border-radius: 12px;
+  background: #000;
+  display: flex;
+  width: 100%;
+  border: 2px solid black;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  color: white
+}
+
+.google-btn img {
+  width: 20px;
+}
+
+.btn span {
+  font-weight: 700;
+}
+
+.title {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--neutral-07100, #141718);
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.96px;
+  width: 100%;
+}
+
+.title2 {
+  color: var(--neutral-07100, #141718);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.title-sub {
+  margin-bottom: 20px;
+  color: #8A91A8;
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  background: #F3F5F7;
+  border: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input input {
+  border: 0;
+  background: transparent;
+  width: 100%;
+  outline: none;
+}
+
+.input img {
+  width: 15px;
+}
+
+.lb {
+  margin-bottom: 5px;
+  color: var(--neutral-07100, #141718);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.tologin,
+.toreg {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.sminfo {
+  margin-top: 5px;
+  color: #141414;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  top: 0;
+  left: 0;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.hidden {
+  display: none !important;
 }
 
-@keyframes App-logo-spin {
-  from {
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 5px solid #2e2e2e;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #2e2e2e transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+#snackbar {
+  visibility: hidden;
+  /* Hidden by default. Visible on click */
+  min-width: 250px;
+  /* Set a default minimum width */
+  margin-left: -125px;
+  /* Divide value of min-width by 2 */
+  background-color: #ff1e1e;
+  /* Black background color */
+  color: #ffffff;
+  /* White text color */
+  text-align: center;
+  /* Centered text */
+  border-radius: 2px;
+  /* Rounded borders */
+  padding: 16px;
+  /* Padding */
+  position: fixed;
+  /* Sit on top of the screen */
+  z-index: 1;
+  /* Add a z-index if needed */
+  left: 50%;
+  /* Center the snackbar */
+  bottom: 30px;
+  /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
   }
 }
